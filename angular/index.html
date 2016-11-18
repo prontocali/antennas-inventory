@@ -1,0 +1,58 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="MainApp">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CodeLouisville-Project</title>
+	<!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<!-- Load angular -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<!-- Load angular javascript -->
+	<script src="core.js"></script>
+
+</head>
+<body ng-controller="mainController">
+	<div class="container">
+
+		<div class="jumbotron text-center" ng-prueba>
+			<h1>Number of Antennas: <span class="label label-success">{{ antennas.length }}</span></h1>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6 col-sm-offset-1">
+				<table class="table table-striped">
+					<tr class="info">
+						<td>ANTENNA</td>
+						<td>LOCATION</td>
+						<td>POWER</td>
+					</tr>
+					<tr ng-repeat="antenna in antennas" ng-click="selectAntenna(antenna)">
+						<td>{{ antenna.name }}</td>
+						<td>{{ antenna.ubiety }}</td>
+						<td>{{ antenna.power }}</td>						
+					</tr>
+				</table>					
+			</div>
+			<div class="col-sm-4 col-sm-offset-1 text-center">
+				<form name="myForm">
+					<div class="form-group">
+						<input type="text" class="form-control input-lg text-center" placeholder="Antenna" ng-model="newAntenna.name" required>
+						<br>
+						<input type="text" class="form-control input-lg text-center" placeholder="Location" ng-model="newAntenna.ubiety" required>
+						<br>
+						<input type="text" class="form-control input-lg text-center" placeholder="Power" ng-model="newAntenna.power" required>
+					</div>
+
+					<!-- Actions that we can make in the form-->
+					<button type="submit" class="btn btn-success btn-lg" ng-click="registrarAntenna()" ng-disabled="myForm.$invalid || selected">Create</button>
+					<button type="submit" class="btn btn-warning btn-lg" ng-click="modificarAntenna(newAntenna)" ng-disabled="!newAntenna.name || !newAntenna.ubiety || !newAntenna.power || !selected">Edit</button>
+					<button type="submit" class="btn btn-danger btn-lg" ng-click="borrarAntenna(newAntenna)" ng-disabled="!newAntenna.name || !newAntenna.ubiety || !newAntenna.power || !selected">Delete</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
